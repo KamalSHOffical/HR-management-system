@@ -1,3 +1,5 @@
+'use strict';
+
 // generate a random Number
 function getRandomInt(min, max) {
     // return Math.floor(1000 + Math.random() * 9999);
