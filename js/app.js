@@ -29,8 +29,8 @@ function uniqueId() {
     return id;
 }
 
-// employees departements
-const departements = ["Administration", "Marketing", "Development", "Finance"]
+// employees departments
+const departments = ["Administration", "Marketing", "Development", "Finance"]
 
 // employees levels
 const levels = ["Junior", "Mid-Senior", "Senior"];
@@ -58,91 +58,100 @@ function calculateSalary(level) {
     return netSalary;
 }
 
-// employees
-const employee1 = {
-    employeeId: 1000,
-    fullName: "Ghazi Samer",
-    departement: departements[0],
-    level: levels[2],
-    imageUrl: "image1.jpg",
-    salary: calculateSalary(levels[2]),
+// employees list
+const allEmployees = [];
+
+// employee constructor
+function Employee(employeeId, fullName, department, level, imageUrl, salary) {
+    this.employeeId = employeeId;
+    this.fullName = fullName;
+    this.department = department;
+    this.level = level;
+    this.imageUrl = imageUrl;
+    this.salary = salary;
+
+    allEmployees.push(this);
 }
 
-const employee2 = {
-    employeeId: 1001,
-    fullName: "Lana Ali",
-    departement: departements[3],
-    level: levels[2],
-    imageUrl: "image2.jpg",
-    salary: calculateSalary(levels[2]),
+Employee.prototype.renderEmployees = function () {
+    document.write(
+        `<p class="font1">
+        Employee name: ${this.fullName} 
+        <br/> Department: ${this.department}
+        <br/> Employee salary: $${this.salary}
+        </p>`
+    );
+
+    //document.getElementById("employee").innerHTML = employees;
 }
 
-const employee3 = {
-    employeeId: 1002,
-    fullName: "Tamara Ayoub",
-    departement: departements[1],
-    level: levels[2],
-    imageUrl: "image3.jpg",
-    salary: calculateSalary(levels[2]),
-}
+let ghazi = new Employee(
+    1000,
+    "Ghazi Samer",
+    departments[0],
+    levels[2],
+    "ghazi.jpg",
+    calculateSalary(levels[2])
+);
 
-const employee4 = {
-    employeeId: 1003,
-    fullName: "Safi Walid",
-    departement: departements[0],
-    level: levels[1],
-    imageUrl: "image4.jpg",
-    salary: calculateSalary(levels[1]),
-}
+let lana = new Employee(
+    1001,
+    "Lana Ali",
+    departments[3],
+    levels[2],
+    "lana.jpg",
+    calculateSalary(levels[2])
+);
 
-const employee5 = {
-    employeeId: 1004,
-    fullName: "Omar Zaid",
-    departement: departements[2],
-    level: levels[2],
-    imageUrl: "image5.jpg",
-    salary: calculateSalary(levels[2]),
-}
+let tamara = new Employee(
+    1002,
+    "Tamara Ayoub",
+    departments[1],
+    levels[2],
+    "tamara.jpg",
+    calculateSalary(levels[2])
+);
 
-const employee6 = {
-    employeeId: 1005,
-    fullName: "Rana Saleh",
-    departement: departements[2],
-    level: levels[0],
-    imageUrl: "image6.jpg",
-    salary: calculateSalary(levels[0]),
-}
+let safi = new Employee(
+    1003,
+    "Safi Walid",
+    departments[0],
+    levels[1],
+    "safi.jpg",
+    calculateSalary(levels[1])
+);
 
-const employee7 = {
-    employeeId: 1006,
-    fullName: "Hadi Ahmad",
-    departement: departements[3],
-    level: levels[1],
-    imageUrl: "image7.jpg",
-    salary: calculateSalary(levels[1]),
-}
+let omar = new Employee(
+    1004,
+    "Omar Zaid",
+    departments[2],
+    levels[2],
+    "omar.jpg",
+    calculateSalary(levels[2])
+)
+
+let rana = new Employee(
+    1005,
+    "Rana Saleh",
+    departments[2],
+    levels[0],
+    "rana.jpg",
+    calculateSalary(levels[0])
+)
+
+let hadi = new Employee(
+    1006,
+    "Hadi Ahmed",
+    departments[3],
+    levels[1],
+    "hadi.jpg",
+    calculateSalary(levels[1])
+)
 
 function renderMain() {
-    document.getElementById("employee1").innerHTML = `Employee name: ${employee1.fullName} 
-    <br/> Employee salary: $${employee1.salary}`;
-
-    document.getElementById("employee2").innerHTML = `Employee name: ${employee2.fullName} 
-    <br/> Employee salary: $${employee2.salary}`;
-
-    document.getElementById("employee3").innerHTML = `Employee name: ${employee3.fullName} 
-    <br/> Employee salary: $${employee3.salary}`;
-
-    document.getElementById("employee4").innerHTML = `Employee name: ${employee4.fullName} 
-    <br/> Employee salary: $${employee4.salary}`;
-    
-    document.getElementById("employee5").innerHTML = `Employee name: ${employee5.fullName} 
-    <br/> Employee salary: $${employee5.salary}`;
-
-    document.getElementById("employee6").innerHTML = `Employee name: ${employee6.fullName} 
-    <br/> Employee salary: $${employee6.salary}`;
-
-    document.getElementById("employee7").innerHTML = `Employee name: ${employee7.fullName} 
-    <br/> Employee salary: $${employee7.salary}`;
+    for (let i = 0; i < allEmployees.length; i++) {
+        allEmployees[i].renderEmployees();
+    }
 
     //document.getElementById("unique").innerHTML = `${uniqueId()}`;
 }
