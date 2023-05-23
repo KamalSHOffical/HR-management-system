@@ -86,7 +86,7 @@ Employee.prototype.renderEmployees = function () {
 }
 
 let ghazi = new Employee(
-    1000,
+    uniqueId(),
     "Ghazi Samer",
     departments[0],
     levels[2],
@@ -95,7 +95,7 @@ let ghazi = new Employee(
 );
 
 let lana = new Employee(
-    1001,
+    uniqueId(),
     "Lana Ali",
     departments[3],
     levels[2],
@@ -104,7 +104,7 @@ let lana = new Employee(
 );
 
 let tamara = new Employee(
-    1002,
+    uniqueId(),
     "Tamara Ayoub",
     departments[1],
     levels[2],
@@ -113,7 +113,7 @@ let tamara = new Employee(
 );
 
 let safi = new Employee(
-    1003,
+    uniqueId(),
     "Safi Walid",
     departments[0],
     levels[1],
@@ -122,7 +122,7 @@ let safi = new Employee(
 );
 
 let omar = new Employee(
-    1004,
+    uniqueId(),
     "Omar Zaid",
     departments[2],
     levels[2],
@@ -131,7 +131,7 @@ let omar = new Employee(
 )
 
 let rana = new Employee(
-    1005,
+    uniqueId(),
     "Rana Saleh",
     departments[2],
     levels[0],
@@ -140,7 +140,7 @@ let rana = new Employee(
 )
 
 let hadi = new Employee(
-    1006,
+    uniqueId(),
     "Hadi Ahmed",
     departments[3],
     levels[1],
