@@ -22,7 +22,7 @@ const levels = ["Junior", "Mid-Senior", "Senior"];
 const allEmployees = [];
 
 // employee constructor
-function Employee( fullName, department, level, imageUrl) {
+function Employee(fullName, department, level, imageUrl) {
     this.employeeId = this.uniqueId();
     this.fullName = fullName;
     this.department = department;
@@ -33,16 +33,47 @@ function Employee( fullName, department, level, imageUrl) {
     allEmployees.push(this);
 }
 
+// Use div elements in html pages that have the id "js-container"
+const container = document.getElementById('js-container');
+
 Employee.prototype.renderEmployees = function () {
-    document.write(
-        `<p class="font1">
-        Employee name: ${this.fullName} 
-        <br/> Department: ${this.department}
-        <br/> Employee salary: $${this.salary}
-        </p>`
-    );
 
     //document.getElementById("employee").innerHTML = employees;
+
+    /* document.write(
+         `<p class="font1">
+         Employee name: ${this.fullName} 
+         <br/> Department: ${this.department}
+         <br/> Employee salary: $${this.salary}
+         </p>`
+     );*/
+
+    // Creating div element for employee's card
+    const cardDiv = document.createElement('div');
+    cardDiv.classList.add('card');
+
+    // Adding image element to the card's div element
+    const cardImage = document.createElement('img');
+    cardImage.src = this.imageUrl;
+    cardImage.alt = `${this.fullName}`;
+    cardDiv.appendChild(cardImage);
+
+    // Text element
+    const cardText = document.createElement('div');
+    cardText.classList.add('card-text');
+
+    const nameId = document.createElement('p');
+    nameId.textContent = `Name: ${this.fullName} - ID: ${this.employeeId}`;
+    cardText.appendChild(nameId);
+
+    const depLevel = document.createElement('p');
+    depLevel.textContent = `Department: ${this.department} - Level: ${this.level}`;
+    cardText.appendChild(depLevel);
+
+    cardDiv.appendChild(cardText);
+
+    // Append the card to the container
+    container.appendChild(cardDiv);
 };
 
 
@@ -90,57 +121,87 @@ let ghazi = new Employee(
     "Ghazi Samer",
     departments[0],
     levels[2],
-    "ghazi.jpg",
+    "assets/Ghazi.jpg",
 );
 
 let lana = new Employee(
     "Lana Ali",
     departments[3],
     levels[2],
-    "lana.jpg",
+    "assets/Lana.jpg",
 );
 
 let tamara = new Employee(
     "Tamara Ayoub",
     departments[1],
     levels[2],
-    "tamara.jpg",
+    "assets/Tamara.jpg",
 );
 
 let safi = new Employee(
     "Safi Walid",
     departments[0],
     levels[1],
-    "safi.jpg",
+    "assets/Safi.jpg",
 );
 
 let omar = new Employee(
     "Omar Zaid",
     departments[2],
     levels[2],
-    "omar.jpg",
+    "assets/Omar.jpg",
 )
 
 let rana = new Employee(
     "Rana Saleh",
     departments[2],
     levels[0],
-    "rana.jpg",
+    "assets/Rana.jpg",
 )
 
 let hadi = new Employee(
     "Hadi Ahmed",
     departments[3],
     levels[1],
-    "hadi.jpg",
+    "assets/Hadi.jpg",
 )
 
-function renderMain() {
+/*function renderMain() {
     for (let i = 0; i < allEmployees.length; i++) {
         allEmployees[i].renderEmployees();
     }
 
     //document.getElementById("unique").innerHTML = `${uniqueId()}`;
+}*/
+
+function renderMain() {
+
+    // Seperating each card depending on their department
+    for (let i = 0; i < departments.length; i++) {
+        const depRow = document.createElement('div');
+        depRow.classList.add('card-row');
+        const textRow = document.createElement('div');
+        const depName = document.createElement('h3');
+        depName.textContent = `${departments[i]}'s employees: `
+        textRow.appendChild(depName);
+
+        for (let j = 0; j < allEmployees.length; j++) {
+            if (allEmployees[j].department === departments[i]) {
+                allEmployees[j].renderEmployees();
+                depRow.appendChild(container.lastElementChild);
+            }
+        }
+
+        if (depRow.childElementCount > 0) {
+            // Append the department row container to the main container
+            container.appendChild(textRow);
+            container.appendChild(depRow);
+        }
+    }
+
 }
 
+
 renderMain();
+
+
